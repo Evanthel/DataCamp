@@ -3,7 +3,7 @@ from datetime import datetime, timedelta
 
 
 def format_date(timestamp, datetime_format):
-    dt_object = (datetime.fromtimestamp(timestamp)).strftime("%d-%m-%Y")
+    dt_object = (datetime.fromtimestamp(timestamp)).strftime(datetime_format)
     return dt_object
 
 
