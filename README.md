@@ -3,3 +3,4 @@
 - Shell/Git
 - R
 - Data Analysis etc.
+- NLP + Sentiment analysis
