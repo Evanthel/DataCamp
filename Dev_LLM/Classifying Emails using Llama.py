@@ -24,3 +24,27 @@ into one of the following three categories:
 
 Use the subject and body text of each email to decide the most appropriate category.
 """
+def process_message(llm, message, prompt):
+    response = llm(prompt, max_tokens= 5, temperature=0)
+    return response['choices'][0]['text'].strip()
+test_emails = emails_df.head(2)
+results = []
+for idx, row in test_emails.iterrows():
+    email_content = row['email_content']
+    expected_category = row['expected_category']
+    
+    # Get model's classification
+    result = process_message(llm, email_content, prompt)
+    
+    # Store results
+    results.append({
+        'email_content': email_content,
+        'expected_category': expected_category,
+        'model_output': result
+    })
+results_df = pd.DataFrame(results)
+
+result1 = results_df['model_output'].iloc[0]
+result2 = results_df['model_output'].iloc[1]
+
+print(f"Result 1: `{result1}`\nResult 2: `{result2}`")
